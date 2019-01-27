@@ -16,8 +16,26 @@ var config =
 }
 var connection = new Connection(config);
 
+function pullInfo(name,num){ //Pulling info from the database
+    connection.on('connect', function(err)
+{
+    if (err)
+    {
+        console.log(err)
+    }
+    else
+    {
+    
+         getTableTest(name,num);
+        console.log("YAY");
+    }
+}
+);
+    
 
+}
 // Attempt to connect and execute queries if connection goes through
+function pushInfo(name,age,HCN,notes,medList){
 connection.on('connect', function(err)
     {
         if (err)
@@ -26,16 +44,16 @@ connection.on('connect', function(err)
         }
         else
         {
-             //queryDatabase()
-             //executeStatement1()
-             //insertInfo('via',19,12347,"NL");
-             getTableTest();
-            console.log("YAY");
+             
+             insertInfo(name,age,HCN,notes,medList);
+            
+            console.log("YAY Created!!!");
         }
     }
 );
+}
 
-function insertInfo(name, age, HCN, conditions ) {  
+function insertInfo(name, age, HCN, conditions ) {  //putting info from the database
     request = new Request(`INSERT INTO Information VALUES('${name}',${age},${HCN},'${conditions}','lol');`, function(err) {  
      if (err) {  
         console.log(err);}  
@@ -45,9 +63,9 @@ function insertInfo(name, age, HCN, conditions ) {
     
 }  
 
-function getTableTest(){
+function getTableTest(name ,HCN){
     console.log('getting tables...');
-    request = new Request("SELECT * FROM Information", function(err){
+    request = new Request(`SELECT * FROM Information WHERE  HealthCareNum = ${HCN} ;`, function(err){
         if(err){
             console.log(err);
 
