@@ -1,0 +1,25 @@
+{
+  "name": "nwteamlookinggood",
+  "version": "1.0.0",
+  "description": "nwHacks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/S0loW1ng/nwTeamLookingGood.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/S0loW1ng/nwTeamLookingGood/issues"
+  },
+  "homepage": "https://github.com/S0loW1ng/nwTeamLookingGood#readme",
+  "dependencies": {
+    "async": "^2.6.1",
+    "mysql": "^2.16.0",
+    "sql-to-json": "^1.5.0",
+    "tedious": "^4.1.3"
+  }
+}
