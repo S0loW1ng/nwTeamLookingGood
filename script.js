@@ -16,6 +16,9 @@ var config =
 }
 var connection = new Connection(config);
 
+//pullInfo("foo",12345678);
+
+
 function pullInfo(name,num){ //Pulling info from the database
     connection.on('connect', function(err)
 {
@@ -53,8 +56,8 @@ connection.on('connect', function(err)
 );
 }
 
-function insertInfo(name, age, HCN, conditions ) {  //putting info from the database
-    request = new Request(`INSERT INTO Information VALUES('${name}',${age},${HCN},'${conditions}','lol');`, function(err) {  
+function insertInfo(name, age, HCN, conditions,DB ) {  //putting info from the database
+    request = new Request(`INSERT INTO ${DB} VALUES('${name}',${age},${HCN},'${conditions}','lol');`, function(err) {  
      if (err) {  
         console.log(err);}  
     });  
@@ -63,9 +66,9 @@ function insertInfo(name, age, HCN, conditions ) {  //putting info from the data
     
 }  
 
-function getTableTest(name ,HCN){
+function getTableTest(name ,HCN, DB){
     console.log('getting tables...');
-    request = new Request(`SELECT * FROM Information WHERE  HealthCareNum = ${HCN} ;`, function(err){
+    request = new Request(`SELECT * FROM ${DB} WHERE  HealthCareNum = ${HCN} ;`, function(err){
         if(err){
             console.log(err);
 
@@ -92,3 +95,18 @@ function getTableTest(name ,HCN){
     connection.execSql(request);
     return result;
 }
+
+function editTable(HCN,DB,medList,conditions){
+    request = new Request(`UPDATE ${DB} SET MedList  = '${medList}', Conditions = '${conditions}' WHERE Name ='${HCN}';`,function(err){
+        if(err){
+            console.log(err);
+
+        }
+    });
+    connection.execSql(request);
+    console.log("Table edited");
+ 
+
+    
+}
+
