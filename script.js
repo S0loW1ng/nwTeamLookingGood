@@ -16,8 +16,6 @@ var config =
 }
 var connection = new Connection(config);
 
-//pullInfo("foo",12345678);
-
 
 function pullInfo(name,num){ //Pulling info from the database
     connection.on('connect', function(err)
